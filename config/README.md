@@ -72,3 +72,22 @@ Reward account id:
 ```
 cardano-cli stake-address build --stake-verification-key-file spo.vkey  --testnet-magic 666 | cardano-address address inspect
 ```
+
+## Genesis hash
+
+To generate the `XXXGenesisHash` values in `config.json`:
+
+```
+cardano-cli genesis hash  --genesis shelley-genesis.json
+cardano-cli genesis hash  --genesis byron-genesis.json
+cardano-cli genesis hash  --genesis alonzo-genesis.json
+cardano-cli genesis hash  --genesis conway-genesis.json
+```
+
+Note the node will check those values if they are set and refuse to start, dumping the actual/expected values so one can fill in this data through trial and error.
+
+## Start node
+
+```
+cardano-node run --database-path db --socket-path node.socket --port 3003 --byron-signing-key config/byron-delegate.key --byron-delegation-certificate config/byron-delegation.cert --shelley-operational-certificate config/opcert.cert --shelley-kes-key config/kes.skey --shelley-vrf-key config/vrf.skey --config config/config.json --topology config/topology.json --host-addr 127.0.0.1
+```
