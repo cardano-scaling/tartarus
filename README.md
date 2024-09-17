@@ -26,3 +26,7 @@ The goal is to maintain some infrastructure, e.g specialised networking, log cap
 # Current status
 
 _Tartarus_ is barely nascent and not ready for prime-time and general availability yet.
+
+# Resources
+
+* [cardano-playground](https://github.com/input-output-hk/cardano-playground/tree/ccf85e6e8da7c83f2b6d48e0b484bb3271b84c71/docs/explain) specific explanations on how to spin up a whole network using this particular Nix infrastructure, on AWS cluster(s)
