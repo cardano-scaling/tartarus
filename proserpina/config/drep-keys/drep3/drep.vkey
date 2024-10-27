@@ -1,0 +1,5 @@
+{
+    "type": "DRepVerificationKey_ed25519",
+    "description": "Delegated Representative Verification Key",
+    "cborHex": "582097f34c0677923cb7d11ed31ea065828677728afccdd343b92e677b6293d7fb39"
+}

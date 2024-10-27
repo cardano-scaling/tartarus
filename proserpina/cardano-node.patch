@@ -1,0 +1,96 @@
+diff --git a/cardano-testnet/src/Parsers/Cardano.hs b/cardano-testnet/src/Parsers/Cardano.hs
+index 46abc97f0..be93352a3 100644
+--- a/cardano-testnet/src/Parsers/Cardano.hs
++++ b/cardano-testnet/src/Parsers/Cardano.hs
+@@ -50,7 +50,7 @@ pCardanoTestnetCliOptions envCli = CardanoTestnetOptions
+       <>  OA.help "Number of delegate representatives (DReps) to generate"
+       <>  OA.metavar "NUMBER"
+       <>  OA.showDefault
+-      <>  OA.value 3
++      <>  OA.value 9
+       )
+   <*> OA.flag False True
+       (   OA.long "enable-new-epoch-state-logging"
+diff --git a/cardano-testnet/src/Testnet/Components/Configuration.hs b/cardano-testnet/src/Testnet/Components/Configuration.hs
+index 195505c2a..2b6a824e3 100644
+--- a/cardano-testnet/src/Testnet/Components/Configuration.hs
++++ b/cardano-testnet/src/Testnet/Components/Configuration.hs
+@@ -116,7 +116,7 @@ getShelleyGenesisHash path key = do
+   pure . singleton (fromText key) $ toJSON genesisHash
+ 
+ numSeededUTxOKeys :: Int
+-numSeededUTxOKeys = 3
++numSeededUTxOKeys = 9
+ 
+ newtype NumPools = NumPools Int
+ 
+@@ -158,7 +158,7 @@ createSPOGenesisAndFiles (NumPools numPoolNodes) (NumDReps numDelReps) maxSupply
+   let testnetMagic = sgNetworkMagic shelleyGenesis
+       -- At least there should be a delegator per DRep
+       -- otherwise some won't be representing anybody
+-      numStakeDelegators = max 3 numDelReps :: Int
++      numStakeDelegators = max 9 numDelReps :: Int
+       startTime = sgSystemStart shelleyGenesis
+ 
+  -- TODO: Remove this rewrite.
+diff --git a/cardano-testnet/src/Testnet/Process/Cli/SPO.hs b/cardano-testnet/src/Testnet/Process/Cli/SPO.hs
+index 44fc9ecd4..5f25e090f 100644
+--- a/cardano-testnet/src/Testnet/Process/Cli/SPO.hs
++++ b/cardano-testnet/src/Testnet/Process/Cli/SPO.hs
+@@ -353,7 +353,7 @@ registerSingleSpo asbe identifier tap@(TmpAbsolutePath tempAbsPath') nodeConfigF
+     , "--change-address", changeAddr
+     , "--tx-in", Text.unpack $ renderTxIn fundingInput
+     , "--tx-out", poolowneraddresswstakecred <> "+" <> show @Int 5_000_000
+-    , "--witness-override", show @Int 3
++    , "--witness-override", show @Int 9
+     , "--certificate-file", workDir </> "pledger.regcert"
+     , "--certificate-file", poolRegCertFp
+     , "--out-file", workDir </> "pledge-registration-cert.txbody"
+diff --git a/cardano-testnet/src/Testnet/Start/Byron.hs b/cardano-testnet/src/Testnet/Start/Byron.hs
+index a90116457..e70915dfe 100644
+--- a/cardano-testnet/src/Testnet/Start/Byron.hs
++++ b/cardano-testnet/src/Testnet/Start/Byron.hs
+@@ -30,7 +30,7 @@ data ByronGenesisOptions = ByronGenesisOptions
+ 
+ byronDefaultGenesisOptions :: ByronGenesisOptions
+ byronDefaultGenesisOptions = ByronGenesisOptions
+-  { byronNumBftNodes = 3
++  { byronNumBftNodes = 9
+   , byronSecurityParam = 10
+   -- TODO: createByronGenesis should have a check that errors
+   -- if totalBalance can be evenly split between numBftNodes
+diff --git a/cardano-testnet/src/Testnet/Start/Cardano.hs b/cardano-testnet/src/Testnet/Start/Cardano.hs
+index f473b8aab..ed816b6fb 100644
+--- a/cardano-testnet/src/Testnet/Start/Cardano.hs
++++ b/cardano-testnet/src/Testnet/Start/Cardano.hs
+@@ -265,7 +265,7 @@ cardanoTestnet
+         makeUTxOSkeyFp :: Int -> FilePath
+         makeUTxOSkeyFp n = tmpAbsPath </> "utxo-keys" </> "utxo" <> show n </> "utxo.skey"
+ 
+-    wallets <- forM [1..3] $ \idx -> do
++    wallets <- forM [1..9] $ \idx -> do
+       let paymentSKeyFile = makeUTxOSkeyFp idx
+       let paymentVKeyFile = makeUTxOVKeyFp idx
+       let paymentAddrFile = tmpAbsPath </> "utxo-keys" </> "utxo" <> show idx </> "utxo.addr"
+@@ -287,7 +287,7 @@ cardanoTestnet
+         , paymentKeyInfoAddr = Text.pack paymentAddr
+         }
+ 
+-    _delegators <- forM [1..3] $ \(idx :: Int) -> do
++    _delegators <- forM [1..9] $ \(idx :: Int) -> do
+       pure $ Delegator
+         { paymentKeyPair = KeyPair
+           { signingKey = File $ tmpAbsPath </> "stake-delegator-keys/payment" <> show idx <> ".skey"
+diff --git a/cardano-testnet/src/Testnet/Start/Types.hs b/cardano-testnet/src/Testnet/Start/Types.hs
+index 7ab6af6a5..4a34a6a81 100644
+--- a/cardano-testnet/src/Testnet/Start/Types.hs
++++ b/cardano-testnet/src/Testnet/Start/Types.hs
+@@ -72,7 +72,7 @@ instance Default CardanoTestnetOptions where
+     , cardanoMaxSupply = 100_000_020_000_000 -- 100 000 billions Lovelace, so 100 millions ADA. This amount should be bigger than the 'byronTotalBalance' in Testnet.Start.Byron
+     , cardanoEnableP2P = False
+     , cardanoNodeLoggingFormat = NodeLoggingFormatAsJson
+-    , cardanoNumDReps = 3
++    , cardanoNumDReps = 9
+     , cardanoEnableNewEpochStateLogging = True
+     }
+ 

@@ -1,0 +1,177 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: proserpina-b
+  name: proserpina-b
+
+spec:
+  hostname: proserpina-b
+  containers:
+  - name: control
+    image: alpine
+    command: 
+    - /bin/sh
+    - -c
+    - for i in 6 7 8 9 ; do [[ -e xfer-$i ]] || mkfifo xfer-$i ; nc -l -p 4726$i < xfer-$i | nc 127.0.0.1 3726$i > xfer-$i & done ; wait
+  - name: "6"
+    image: ghcr.io/intersectmbo/cardano-node:9.2.1
+    command:
+    - /nix/store/kck95gvng9z5vnjx3cn4vjdkgy8n945r-cardano-node-exe-cardano-node-9.2.1/bin/cardano-node
+    - run
+    - --config                          
+    - /data/config/configuration.yaml
+    - --shelley-kes-key                 
+    - /data/keys/pool6/kes.skey
+    - --shelley-vrf-key                 
+    - /data/keys/pool6/vrf.skey
+    - --byron-delegation-certificate    
+    - /data/keys/pool6/byron-delegation.cert
+    - --byron-signing-key               
+    - /data/keys/pool6/byron-delegate.key
+    - --shelley-operational-certificate 
+    - /data/keys/pool6/opcert.cert
+    - --database-path 
+    - /data/nodes/6/db
+    - --socket-path   
+    - /data/nodes/6/socket
+    - --topology      
+    - /data/nodes/6/topology.json
+    - --host-addr 
+    - 0.0.0.0
+    - --port 
+    - 37266
+    ports:
+    - hostPort: 47266
+      containerPort: 47266
+    volumeMounts:
+    - name: config
+      mountPath: /data/config
+    - name: keys
+      mountPath: /data/keys
+    - name: local
+      mountPath: /data/nodes
+  - name: "7"
+    image: ghcr.io/intersectmbo/cardano-node:9.2.1
+    command:
+    - /nix/store/kck95gvng9z5vnjx3cn4vjdkgy8n945r-cardano-node-exe-cardano-node-9.2.1/bin/cardano-node
+    - run
+    - --config                          
+    - /data/config/configuration.yaml
+    - --shelley-kes-key                 
+    - /data/keys/pool7/kes.skey
+    - --shelley-vrf-key                 
+    - /data/keys/pool7/vrf.skey
+    - --byron-delegation-certificate    
+    - /data/keys/pool7/byron-delegation.cert
+    - --byron-signing-key               
+    - /data/keys/pool7/byron-delegate.key
+    - --shelley-operational-certificate 
+    - /data/keys/pool7/opcert.cert
+    - --database-path 
+    - /data/nodes/7/db
+    - --socket-path   
+    - /data/nodes/7/socket
+    - --topology      
+    - /data/nodes/7/topology.json
+    - --host-addr 
+    - 0.0.0.0
+    - --port 
+    - 37267
+    ports:
+    - hostPort: 47267
+      containerPort: 47267
+    volumeMounts:
+    - name: config
+      mountPath: /data/config
+    - name: keys
+      mountPath: /data/keys
+    - name: local
+      mountPath: /data/nodes
+  - name: "8"
+    image: ghcr.io/intersectmbo/cardano-node:9.2.1
+    command:
+    - /nix/store/kck95gvng9z5vnjx3cn4vjdkgy8n945r-cardano-node-exe-cardano-node-9.2.1/bin/cardano-node
+    - run
+    - --config                          
+    - /data/config/configuration.yaml
+    - --shelley-kes-key                 
+    - /data/keys/pool8/kes.skey
+    - --shelley-vrf-key                 
+    - /data/keys/pool8/vrf.skey
+    - --byron-delegation-certificate    
+    - /data/keys/pool8/byron-delegation.cert
+    - --byron-signing-key               
+    - /data/keys/pool8/byron-delegate.key
+    - --shelley-operational-certificate 
+    - /data/keys/pool8/opcert.cert
+    - --database-path 
+    - /data/nodes/8/db
+    - --socket-path   
+    - /data/nodes/8/socket
+    - --topology      
+    - /data/nodes/8/topology.json
+    - --host-addr 
+    - 0.0.0.0
+    - --port 
+    - 37268
+    ports:
+    - hostPort: 47268
+      containerPort: 47268
+    volumeMounts:
+    - name: config
+      mountPath: /data/config
+    - name: keys
+      mountPath: /data/keys
+    - name: local
+      mountPath: /data/nodes
+  - name: "9"
+    image: ghcr.io/intersectmbo/cardano-node:9.2.1
+    command:
+    - /nix/store/kck95gvng9z5vnjx3cn4vjdkgy8n945r-cardano-node-exe-cardano-node-9.2.1/bin/cardano-node
+    - run
+    - --config                          
+    - /data/config/configuration.yaml
+    - --shelley-kes-key                 
+    - /data/keys/pool9/kes.skey
+    - --shelley-vrf-key                 
+    - /data/keys/pool9/vrf.skey
+    - --byron-delegation-certificate    
+    - /data/keys/pool9/byron-delegation.cert
+    - --byron-signing-key               
+    - /data/keys/pool9/byron-delegate.key
+    - --shelley-operational-certificate 
+    - /data/keys/pool9/opcert.cert
+    - --database-path 
+    - /data/nodes/9/db
+    - --socket-path   
+    - /data/nodes/9/socket
+    - --topology      
+    - /data/nodes/9/topology.json
+    - --host-addr 
+    - 0.0.0.0
+    - --port 
+    - 37269
+    ports:
+    - hostPort: 47269
+      containerPort: 47269
+    volumeMounts:
+    - name: config
+      mountPath: /data/config
+    - name: keys
+      mountPath: /data/keys
+    - name: local
+      mountPath: /data/nodes
+  volumes:
+  - name: config
+    hostPath:
+      type: Directory
+      path: ./config
+  - name: keys
+    hostPath:
+      type: Directory
+      path: ./config/pools-keys
+  - name: local
+    hostPath:
+      type: Directory
+      path: ./nodes

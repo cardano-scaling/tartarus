@@ -2,7 +2,9 @@
 
 set -eo pipefail
 
-IPC="$(podman volume inspect rollback_ipc | jq -r '.[0].Mountpoint')"
-export CARDANO_NODE_SOCKET_PATH="${IPC}/node-spo-9.socket"
+ROOT="$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")"
 
-watch "cardano-cli query tip --testnet-magic 1564 | jq '{cluster:"'"b"'",tip:.}' | json2yaml"
+export CARDANO_NODE_SOCKET_PATH="${ROOT}/nodes/9/socket"
+export CARDANO_NODE_NETWORK_ID=$(cat "${ROOT}"/MAGIC)
+
+watch "cardano-cli conway query tip | json2yaml"

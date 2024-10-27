@@ -1,3 +1,1 @@
-*.socket
-tx.*
-cluster-[ab].tip
+nodes/?/

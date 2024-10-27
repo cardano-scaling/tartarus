@@ -1,0 +1,5 @@
+{
+    "type": "StakePoolSigningKey_ed25519",
+    "description": "Stake Pool Operator Signing Key",
+    "cborHex": "58203025b5c05a864654ce457b0dad17e27d887e5cbfdb74cc5ac6a544674ab47f59"
+}

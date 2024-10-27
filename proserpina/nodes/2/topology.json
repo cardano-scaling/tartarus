@@ -1,0 +1,10 @@
+{"Producers" : [
+  {"addr" : "127.0.0.1", "port" : 37261, "valency" : 1}  
+, {"addr" : "127.0.0.1", "port" : 37263, "valency" : 1}  
+, {"addr" : "127.0.0.1", "port" : 37264, "valency" : 1}  
+, {"addr" : "127.0.0.1", "port" : 37265, "valency" : 1}  
+, {"addr" : "192.168.0.12", "port" : 47266, "valency" : 1}  
+, {"addr" : "192.168.0.12", "port" : 47267, "valency" : 1}  
+, {"addr" : "192.168.0.12", "port" : 47268, "valency" : 1}  
+, {"addr" : "192.168.0.12", "port" : 47269, "valency" : 1}  
+]}

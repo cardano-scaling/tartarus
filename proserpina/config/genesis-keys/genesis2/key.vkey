@@ -1,0 +1,5 @@
+{
+    "type": "GenesisVerificationKey_ed25519",
+    "description": "Genesis Verification Key",
+    "cborHex": "5820790eeb7143d0a3c083af3fd4eb0c7250f05ac4023400947ac6c94a78670488d6"
+}
