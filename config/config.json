@@ -4,7 +4,7 @@
     "ByronGenesisFile": "byron-genesis.json",
     "ByronGenesisHash": "19ca3d3183a3e91d9401eead700a317af2d4e4dc4b6330dee15b7018e4a21abc",
     "ShelleyGenesisFile": "shelley-genesis.json",
-    "ShelleyGenesisHash": "6a51f69f0054d09367ce698bff8635c84c1e0f7db4d06a7f5995ce26e4886545",
+    "ShelleyGenesisHash": "3413213169772ff6d2b1a169246d321944e8ae0eb49f9f6bfe4e889c19377e1c",
     "ConwayGenesisFile": "conway-genesis.json",
     "ConwayGenesisHash": "571c43d8e9dfa7e7c5544b104b25645d54456f20b95f80fcd963bf7c7d896228",
     "EnableP2P": false,

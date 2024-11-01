@@ -1,0 +1,5 @@
+{
+    "type": "DRepSigningKey_ed25519",
+    "description": "Delegated Representative Signing Key",
+    "cborHex": "5820884d20ce02a950a3a47532c028dae5824bd9122523b64816de1d73311b6fa9be"
+}
