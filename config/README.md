@@ -91,9 +91,3 @@ Note the node will check those values if they are set and refuse to start, dumpi
 ```
 cardano-node run --database-path db --socket-path node.socket --port 3003 --byron-signing-key config/byron-delegate.key --byron-delegation-certificate config/byron-delegation.cert --shelley-operational-certificate config/opcert.cert --shelley-kes-key config/kes.skey --shelley-vrf-key config/vrf.skey --config config/config.json --topology config/topology.json --host-addr 127.0.0.1
 ```
-
-## Generate 1 pool cluster with cardano-testnet
-
-```
-cardano-node run --config configuration.yaml --shelley-kes-key keys/pool1/kes.skey --shelley-vrf-key keys/pool1/vrf.skey --byron-delegation-certificate     keys/pool1/byron-delegation.cert --byron-signing-key                keys/pool1/byron-delegate.key --shelley-operational-certificate  keys/pool1/opcert.cert --database-path  data/nodes/1/db --socket-path    data/nodes/1/socket --topology   data/node1/topology.json --host-addr 10.10.0.2 --port 37261
-```
