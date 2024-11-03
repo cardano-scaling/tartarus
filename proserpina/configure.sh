@@ -5,8 +5,8 @@ set -eo pipefail
 ROOT="$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")"
 CONFIG="${ROOT}/config"
 
-podman network create --ignore --disable-dns --subnet "$(cat "${ROOT}"/CIDR-a)" proserpina-a
-podman network create --ignore --disable-dns --subnet "$(cat "${ROOT}"/CIDR-b)" proserpina-b
+podman network create --ignore --disable-dns --subnet "$(cat "${ROOT}"/CIDR-a)" proserpina-hon
+podman network create --ignore --disable-dns --subnet "$(cat "${ROOT}"/CIDR-b)" proserpina-adv
 
 START_TIME="$(date -d "now - 1 seconds" +%s)"
 sed -i -e 's/"startTime": [0-9]*/"startTime": '"${START_TIME}/" "${CONFIG}/byron/genesis.json"

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-podman pause proserpina-a-control proserpina-b-control
+podman pause proserpina-hon-control proserpina-adv-control
