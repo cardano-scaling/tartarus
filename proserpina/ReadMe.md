@@ -11,9 +11,9 @@ The scripts require the following tools:
 - `jq`
 - `podman`
 - `sed`
+- `json2yaml`
 
-The scripts have been tested under NixOS 24.05.
-
+The scripts have been tested under NixOS 24.05 and Debian Trixie/Sid on x86-64.
 
 ## Configuration
 
@@ -26,7 +26,6 @@ The following genesis files and node configuration are used:
 - [config/configuration.yaml](config/configuration.yaml)
 
 These may be lighly customized before launching the clusters. In particular, it may be useful to edit the `epochLength`, `activeSlotsCoeff`, `protocolParams`, `securityParam`, or `slotLength` of [config/shelley-genesis.json](config/shelley-genesis.json).
-
 
 ## Network
 
