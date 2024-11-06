@@ -60,6 +60,18 @@ Create the clusters and start them running.
 ./create-clusters.sh
 ```
 
+<details>
+<summary>Tips</summary>
+
+To download images from GitHub container registry, one needs to be authenticated with a proper token.
+
+When running locally, it might be necessary to authenticate podman with such a token:
+
+```bash
+echo $GITHUB_TOKEN | podman login ghcr.io --username <username> --password-stdin
+```
+
+</details>
 
 ### Measuring consensus
 
