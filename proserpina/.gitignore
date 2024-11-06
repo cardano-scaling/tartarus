@@ -1,0 +1,5 @@
+nodes/?/
+*.log
+*.log.gz
+*.csv
+*.jsonarray

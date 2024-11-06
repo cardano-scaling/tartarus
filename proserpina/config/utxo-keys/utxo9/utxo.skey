@@ -1,0 +1,5 @@
+{
+    "type": "GenesisUTxOSigningKey_ed25519",
+    "description": "Genesis Initial UTxO Signing Key",
+    "cborHex": "5820b1cb89c7d78df78aceb95684feb0b1b4098923490c150a0065e5632597893355"
+}
