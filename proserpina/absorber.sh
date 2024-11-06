@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 
+# Advantage of honest nodes that cause the attempt to fail.
 M=2
-N=10
 
-PATH=/scratch/iohk/bin:$PATH
+# Advantage of adversarial nodes that cause the attempt to succeed.
+N=10
 
 export CARDANO_NODE_NETWORK_ID=$(echo -n proserpina | cksum | sed -e 's/ .*//')
 
 SPLIT=0
+
+for c in proserpina-{hon,adv}-control
+do
+  if [[ "$(podman inspect $c | jq '.[0].State.Paused')" == "true" ]]
+  then
+    podman unpause $c
+  fi
+done
 
 while true
 do
