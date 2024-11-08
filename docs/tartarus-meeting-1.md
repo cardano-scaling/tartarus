@@ -5,6 +5,7 @@ date: 2024-11-07
 title-slide-attributes:
     data-background-image: ../assets/tartarus.jpeg
     data-background-size: contain
+author: Arnaud Bailly - Brian Bush
 ---
 
 # Agenda
@@ -96,3 +97,5 @@ Adversary monitors the two forks:
 
 * [Github repository](https://github.com/cardano-scaling/tartarus)
 * [Discord channel](https://discord.gg/3Ps9yPgh)
+* [`brian.bush@iohk.io`](mailto:brian.bush@iohk.io)
+* [`arnaud@pnakzsoft.com`](mailto:arnaud@pankzsoft.com)
