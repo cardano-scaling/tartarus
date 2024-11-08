@@ -1,7 +1,10 @@
 ---
 title:  Tartarus Meeting #1
-subtitle: Welcome to Hell!
+subtitle: Welcome to Cardano's Hell!
 date: 2024-11-07
+title-slide-attributes:
+    data-background-image: ../assets/tartarus.jpeg
+    data-background-size: contain
 ---
 
 # Agenda
@@ -15,6 +18,8 @@ date: 2024-11-07
 
 # Local Cluster Experiment
 
+----
+
 - *Purpose:* highlight issues and techniques for adversial network studies
 - *Approach:* start small and check against theory
 - Initial network ("Proserpina")
@@ -25,24 +30,32 @@ date: 2024-11-07
     - Check block production against theory
     - Private-fork attack
 
-# Diagnostic study
+## Diagnostic study
 
-- Simpy observe block production in the network
+- Simply observe block production in the network
 - Statistical tests
     - Correct number of blocks are produced
     - All nodes produce blocks at the same rate
     - Gaps in block production are geometrically distributed
-- https://github.com/cardano-scaling/tartarus/blob/main/proserpina/diagnostics.ipynb
+- [Jupyter notebook](https://github.com/cardano-scaling/tartarus/blob/main/proserpina/diagnostics.ipynb)
 
-# Private Adversarial Fork - Setup
+## Private Adversarial Fork - Setup
 
-0. The honest party has $p$ of the stake and the adversary has $q$ of the stake:
+Honest and adversary party have resp. $p$ and $q$ fraction of the stake
+
 1. Adversary isolates their nodes from the honest ones.
-2. Adversary builds a private fork.
-3. If the honest fork becomes $m$ blocks longer than the private adversarial fork, then the adversary gives up.
-4. If the private adversarial fork becomes $n$ blocks longer than the honest fork, then the adversary rejoins the honest network, revealing their longer chain to the honest parties, who are compelled to adopt it in favor of their shorter honest fork.
+2. Adversary builds a private fork $A$ while honest party builds honest fork $H$.
 
-# Private Adversarial Fork - Results
+---
+
+Adversary monitors the two forks:
+
+1. $|H| - |A| \geq m$, then the adversary gives up
+   a. Adversary adopts $H$ and starts over building $A$
+2. $|A| - |H| \geq n$, the adversary reveals $A$ to the honest parties
+   a. Honest party is compelled to adopt $A$ through the longest chain rule
+
+## Private Adversarial Fork - Results
 
 - Five times realtime: 0.2 slot/second
 - Approximately 1400 attacks in 24 hours
@@ -54,5 +67,32 @@ date: 2024-11-07
 
 # Running Tartarus over VPN
 
+## The Idea
+
+* A Cardano testnet running over a publicly accessible VPN
+* Peers register to join the VPN ([Cerberus](https://en.wikipedia.org/wiki/Greek_underworld#Cerberus)) using given configuration
+* Nodes connect to each other through the VPN
+* Adversary ([Minos](https://en.wikipedia.org/wiki/Minos)) injects _faults_ at predefined points in time
+* Peers and Tartarus collect data and statistics about the network
+
+----
+
+![](../assets/tartarus-over-vpn.svg)
+
+## More ideas
+
+> To become the [Jepsen](https://jepsen.io) of Cardano (and possibly other blockchains?)
+
+* Regular reports and dashboards to the community
+* Register for VPN IP address on-chain
+* Allow contribution of new adversarial scenarios run by _Minos_
+* On-chain transactions to fund infrastructure costs?
 
 # Discussion
+
+![](../assets/agora.jpeg)
+
+# Stay in touch
+
+* [Github repository](https://github.com/cardano-scaling/tartarus)
+* [Discord channel](https://discord.gg/3Ps9yPgh)
