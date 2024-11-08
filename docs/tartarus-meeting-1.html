@@ -41,7 +41,7 @@
   <h1 class="title">Tartarus Meeting</h1>
   <p class="subtitle">Welcome to Cardano’s Hell!</p>
   <p class="author">Arnaud Bailly - Brian Bush</p>
-  <p class="date">2024-11-07</p>
+  <p class="date">2024-11-08</p>
 </section>
 
 <section>
@@ -149,6 +149,20 @@ rule</li>
 <li class="fragment">Actual success rate is 3.99%</li>
 <li class="fragment">A chi-squared test indicates that actuality matches
 expectations</li>
+</ul>
+</section>
+<section id="private-adversarial-fork---findings" class="slide level2">
+<h2>Private Adversarial Fork - Findings</h2>
+<ul>
+<li class="fragment">The 9.2.1 version of <code>cardano-testnet</code>
+fails to run a local testnet.</li>
+<li class="fragment">The 9.2.1 version of <code>cardano-node</code>
+silently omits important messages from the log when the logging flow is
+too great.</li>
+<li class="fragment">Block production and private-fork attacks on
+<code>cardano-node</code> match theory.</li>
+<li class="fragment">Many helper scripts will be needed to orchestrate
+attack scenarios on the testnet.</li>
 </ul>
 </section></section>
 <section>
