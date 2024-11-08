@@ -66,6 +66,13 @@ Adversary monitors the two forks:
 - Actual success rate is 3.99%
 - A chi-squared test indicates that actuality matches expectations
 
+## Private Adversarial Fork - Findings
+
+- The 9.2.1 version of `cardano-testnet` fails to run a local testnet.
+- The 9.2.1 version of `cardano-node` silently omits important messages from the log when the logging flow is too great.
+- Block production and private-fork attacks on `cardano-node` match theory.
+- Many helper scripts will be needed to orchestrate attack scenarios on the testnet.
+
 # Running Tartarus over VPN
 
 ## The Idea
